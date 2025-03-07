@@ -9,13 +9,12 @@ A React application that analyzes text files to find repeated character sequence
 - AI-powered sorting of results using OpenAI
 - History of last 5 processed files
 - Results persistence using local storage
-- Docker containerization for easy deployment
 
 ## Prerequisites
 
 - Node.js 20.x or later
 - npm or yarn
-- Docker (for containerized deployment)
+- Docker and Docker Compose (for containerized deployment)
 - OpenAI API key
 
 ## Local Development
@@ -35,36 +34,26 @@ REACT_APP_OPENAI_API_KEY=your_api_key_here
 npm start
 ```
 
-## Building and Running with Docker
+## Docker Deployment
 
-1. Build the Docker image:
+1. Clone the repository:
 ```bash
-docker build -t character-analyzer .
+git clone https://github.com/your-username/character-analyzer.git
+cd character-analyzer
 ```
 
-2. Run the container:
+2. Create a `.env` file with your OpenAI API key:
 ```bash
-docker run -p 80:80 character-analyzer
+cp .env.example .env
+# Edit .env and add your OpenAI API key
 ```
 
-## Deployment
-
-### Using Docker Compose
-
-1. Update the `docker-compose.yml` file with your configuration
-2. Run:
+3. Start the application with Docker Compose:
 ```bash
 docker-compose up -d
 ```
 
-### Manual Deployment on Ubuntu Server
-
-1. Install Docker and Docker Compose
-2. Clone this repository
-3. Configure environment variables
-4. Run with Docker Compose
-
-For detailed deployment instructions, see the [Deployment Guide](DEPLOYMENT.md).
+The application will be available at http://localhost:3000
 
 ## Project Structure
 
@@ -74,11 +63,12 @@ For detailed deployment instructions, see the [Deployment Guide](DEPLOYMENT.md).
 - `/public` - Static files
 - `Dockerfile` - Docker configuration
 - `docker-compose.yml` - Docker Compose configuration
-- `nginx.conf` - Nginx server configuration
 
 ## Environment Variables
 
 - `REACT_APP_OPENAI_API_KEY` - Your OpenAI API key
+- `NODE_ENV` - Application environment (development/production)
+- `PORT` - Application port (default: 3000)
 
 ## Contributing
 
